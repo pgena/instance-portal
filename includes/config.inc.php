@@ -1,0 +1,40 @@
+<?php 
+if(!defined('VALID_CMS')) { die('ACCESS DENIED'); } 
+$_CFG = array();
+$_CFG['sitename'] 	= 'Portal';
+$_CFG['title_and_sitename'] 	= 1;
+$_CFG['title_and_page'] 	= 1;
+$_CFG['hometitle'] 	= '';
+$_CFG['homecom'] 	= '';
+$_CFG['siteoff'] 	= 0;
+$_CFG['debug'] 	= 0;
+$_CFG['offtext'] 	= 'Производится обновление сайта';
+$_CFG['keywords'] 	= 'InstantCMS, система управления сайтом, бесплатная CMS, движок сайта, CMS, движок социальной сети';
+$_CFG['metadesc'] 	= 'InstantCMS - бесплатная система управления сайтом с социальными функциями';
+$_CFG['lang'] 	= 'ru';
+$_CFG['sitemail'] 	= '';
+$_CFG['wmark'] 	= 'watermark.png';
+$_CFG['stats'] 	= 0;
+$_CFG['template'] 	= '_default_';
+$_CFG['com_without_name_in_url'] 	= 'content';
+$_CFG['splash'] 	= 0;
+$_CFG['slight'] 	= 1;
+$_CFG['db_host'] 	= 'localhost';
+$_CFG['db_base'] 	= 'instance';
+$_CFG['db_user'] 	= 'user';
+$_CFG['db_pass'] 	= '';
+$_CFG['db_prefix'] 	= 'cms';
+$_CFG['show_pw'] 	= 1;
+$_CFG['short_pw'] 	= 0;
+$_CFG['index_pw'] 	= 0;
+$_CFG['fastcfg'] 	= 1;
+$_CFG['mailer'] 	= 'mail';
+$_CFG['sendmail'] 	= '/usr/sbin/sendmail';
+$_CFG['smtpauth'] 	= 0;
+$_CFG['smtpuser'] 	= '';
+$_CFG['smtppass'] 	= '';
+$_CFG['smtphost'] 	= 'localhost';
+$_CFG['timezone'] 	= 'Europe/Moscow';
+$_CFG['timediff'] 	= '';
+$_CFG['allow_ip'] 	= '';
+?>
