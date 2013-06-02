@@ -45,7 +45,7 @@
 				<tr>
 					<td width="30" valign="top"><img src="/templates/{template}/images/icons/big/faq_quest.png" border="0" /></td>
 					<td width="" valign="middle">
-						<div class="faq_quest_link"><a href="/faq/quest{$quest.id}.html">{$quest.quest|truncate:200}</a></div>
+						<div class="faq_quest_link"><a href="/faq/quest{$quest.id}.html">{$quest.quest|truncate:250}</a></div>
                         {if $id==0}
                         <div class="faq_questcat">&rarr;  <a href="/faq/{$quest.cid}">{$quest.cat_title}</a></div>
                         {/if}
