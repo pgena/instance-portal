@@ -41,8 +41,16 @@
 <?php if (cmsConfig::getConfig('siteoff') && $inUser->is_admin) { ?>
 <div style="margin:4px; padding:5px; border:solid 1px red; background:#FFF; position: fixed;opacity: 0.8; z-index:999"><strong style="color:red">Сайт отключен.</strong> Только администраторы видят его содержимое.</div>
 <?php } ?>
-    <div id="wrapper">
-
+	<div id="wrapper">
+		<div id="heads">
+			<div class="container_12">
+                    <div class="head1" id="head123"><?php $inPage->printModules('head1'); ?></div>
+                    <div class="head2" id="head123"><?php $inPage->printModules('head2'); ?></div>
+                    <div class="head3" id="head123"><?php $inPage->printModules('head3'); ?></div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	
         <div id="header">
             <div class="container_12">
                 <div class="grid_3">
@@ -101,15 +109,28 @@
                              <?php $inPage->printBody(); ?>
                         </div>
                     <?php } ?>
+					
+					<div class="container_12">
+						<div class="maincol1" id="maincol"><?php $inPage->printModules('maincol1'); ?></div>
+						<div class="maincol2" id="maincol"><?php $inPage->printModules('maincol2'); ?></div>
+					</div>
+					<div class="clear"></div>
+			
                     <?php $inPage->printModules('mainbottom'); ?>
                 </div>
+			
                 <?php if ($mod_count['sidebar']) { ?>
                     <div class="grid_4" id="sidebar"><?php $inPage->printModules('sidebar'); ?></div>
                 <?php } ?>
+				<div class="clear"></div>
+				
+				<div class="container_12" id="footmenu">
+					<div class="grid_12">
+						<?php $inPage->printModules('footmenu'); ?>
+					</div>
+				</div>
             </div>
-
         </div>
-
     </div>
 
     <div id="footer">
@@ -124,6 +145,12 @@
             </div>
         </div>
     </div>
+	<div class="clear"></div>
+	<div class="container_12">
+			<div class="footcol1" id="footcol"><?php $inPage->printModules('footcol1'); ?></div>
+			<div class="footcol2" id="footcol"><?php $inPage->printModules('footcol2'); ?></div>
+			<div class="footcol3" id="footcol"><?php $inPage->printModules('footcol3'); ?></div>
+		</div>
 
     <script type="text/javascript">
         $(document).ready(function(){

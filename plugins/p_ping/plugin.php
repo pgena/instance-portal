@@ -39,6 +39,7 @@ class p_ping extends cmsPlugin {
         $this->events[] = 'ADD_POST_DONE';
         $this->events[] = 'ADD_ARTICLE_DONE';
         $this->events[] = 'ADD_BOARD_DONE';
+		$this->events[] = 'ADD_AFISHA_DONE';
 
     }
 
@@ -96,6 +97,11 @@ class p_ping extends cmsPlugin {
             case 'ADD_BOARD_DONE':
                 $pageURL = $siteURL . 'board/read'.$item['id'].'.html';
                 $feedURL = $siteURL . 'rss/board/all/feed.rss';
+                $this->ping($pageURL, $feedURL);
+				
+			case 'ADD_AFISHA_DONE':
+                $pageURL = $siteURL . 'afisha/read'.$item['id'].'.html';
+                $feedURL = $siteURL . 'rss/afisha/all/feed.rss';
                 $this->ping($pageURL, $feedURL);
 
             break;

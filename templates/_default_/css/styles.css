@@ -73,8 +73,28 @@ a:hover { color:#375E93; }
     color:#5F98BF;
 }
 
-/***************************** Шапка страницы *********************************/
+/********************************* head123 ************************************/
+#head123 .module{
+    padding:15px;
+    background:#E0EAEF;
+    display:block;
+    overflow:hidden;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    margin-bottom:7px;
+}
 
+#head123 .moduletitle{
+    font-size:18px;
+    margin-bottom:0px;
+    color:#1873AA;
+}
+
+#head123 .modulebody p{
+    margin-bottom:10px;
+}
+
+/***************************** Шапка страницы *********************************/
 #header{
     height:60px;
     line-height:60px;
@@ -201,6 +221,114 @@ a:hover { color:#375E93; }
 .pathway a{ color:#FFF; }
 .pathway a:hover{ color:#BFEAFF; text-decoration:none; }
 
+/******************************* Нижнее меню *********************************/
+#footmenu{
+    overflow:hidden;
+    margin-top:0px;
+    margin-bottom:10px;
+    background:url(../images/menubar.jpg) repeat-x;
+    border-radius:8px;
+    -moz-border-radius:8px;
+    box-shadow: 0 0 5px #000;
+    -moz-box-shadow: 0 0 5px #000;
+    width:940px;
+}
+
+#footmenu .menu{ list-style:none; margin:0; padding:0; }
+#footmenu .menu li a{ text-decoration:none; }
+#footmenu .menu li{
+    list-style:none;
+    margin:0;
+    padding:0;
+    height:40px;
+    line-height:40px;
+    display:inline-block;
+	//display: inline;
+	zoom: 1;
+    font-size:18px;
+    //position: relative;
+}
+
+#footmenu .menu li.selected{
+    background:url(../images/menubg.jpg) repeat-x left top #375E93;
+}
+
+#footmenu .menu li.selected a.selected{
+    color:#fff;
+    text-decoration:none;
+    text-shadow:0 1px 0 #000;
+}
+
+#footmenu .menu li a:hover,
+#footmenu .menu li a.hover{
+    background:url(../images/menubg-hover.jpg) repeat-x center top #375E93;
+    color:#000 !important;
+    text-shadow:0 1px 0px #FFF !important;
+}
+
+#footmenu .menu li a{
+    padding:0px 10px;
+    color:#1F3451;
+    height:40px;
+    line-height:40px;
+    display:inline-block;
+}
+
+#footmenu ul li ul {
+    display:none;
+    position: absolute;
+    top: 115px;
+    //top:40px;
+    //left:0;
+	width: 200px;
+	background: #E9E9E9;
+	color: #000;
+    padding:0px;
+    z-index:1000;
+    box-shadow:1px 1px 3px #000;
+    -moz-box-shadow:1px 1px 3px #000;
+}
+#footmenu ul li ul li ul {
+    display:none;
+    position: relative;
+    margin-top:-155px;
+    left:200px;
+	width: 200px;
+	background: #E9E9E9;
+	color: #000;
+    padding:0px;
+    z-index:1000;
+    box-shadow:1px 1px 3px #000;
+    -moz-box-shadow:1px 1px 3px #000;
+}
+
+#footmenu ul li ul li,  #footmenu ul li ul li a{
+    display:block;
+    width:100%;
+}
+
+#footmenu ul li ul li a{
+    padding:0px !important;
+    text-decoration:none;
+}
+#footmenu ul li ul li a span{
+    margin:0px 10px;
+    padding:0px;
+}
+
+#footmenu ul li ul li a.selected span{
+    text-decoration:none;
+}
+
+.pathway{
+    padding:0 20px 10px;
+    color:#FFFFFF;
+
+}
+
+.pathway a{ color:#FFF; }
+.pathway a:hover{ color:#BFEAFF; text-decoration:none; }
+
 /*************************** Верхний широкий модуль ***************************/
 #topwide{
     background:url(../images/topbg.jpg) repeat-x left bottom #FFF;
@@ -259,6 +387,37 @@ a:hover { color:#375E93; }
     border-bottom:none !important;
 }
 
+/********************************* MainCol ************************************/
+#maincol .module{
+    margin-bottom:10px;
+    //margin-bottom:20px;
+    padding:10px 20px 15px 20px;
+    //padding-top:0px;
+    background:#FFF;
+    border-radius:8px;
+    -moz-border-radius:8px;
+    -moz-box-shadow:0 2px 0 #000;
+    box-shadow:0 2px 0 #000;
+}
+
+#maincol .moduletitle{
+    font-size:22px;
+    height:40px;
+    line-height:40px;
+    background:url(../images/modtop.jpg) repeat-x left;
+    margin-top:-11px;
+    margin-bottom:10px;
+    padding-left:14px;
+    text-shadow:0 1px 0 #1F3147;
+    color:#FFF;
+    border-radius: 0px 0px 8px 8px;
+    -moz-border-radius: 0px 0px 8px 8px;
+    display:block;
+}
+
+#maincol div:last{
+    border-bottom:none !important;
+}
 /********************************* Сайдбар ************************************/
 #sidebar .module{
     padding:15px;
@@ -281,6 +440,46 @@ a:hover { color:#375E93; }
 
 #sidebar .modulebody p{
     margin-bottom:10px;
+}
+/********************************** Добавлено *********************************/
+
+}
+
+#footer-topm .module{
+    display:block;
+    overflow:hidden;
+    margin:0 5px;
+	padding-bottom:10px;
+	width:235px;
+	float:left;
+}
+
+#footer-topm .moduletitle{
+    font-size:18px;
+    height:40px;
+    line-height:40px; 
+    margin-bottom:10px;
+    text-shadow:none;
+    color:#406995;
+    border-radius: 4px 4px 0px 0px;
+    -moz-border-radius: 4px 4px 0px 0px;
+    display:block;
+}
+
+#footer-topm .modulebody {
+    padding: 0 5px;
+}
+
+/********************************** FootMenu *************************************/
+
+#footmenupos{
+    height:50px;
+    line-height:50px;
+    background: #19283B;
+    color:#FFF;
+    text-shadow:0 1px 0 #000;
+    margin-top:0px;
+    clear:both;
 }
 
 /********************************** Футер *************************************/
@@ -309,6 +508,22 @@ a:hover { color:#375E93; }
     text-align:right;
 }
 
+/********************************* FootCol ************************************/
+#footcol .module{
+    margin-bottom:10px;
+    padding:10px 20px 15px 20px;
+    background:#E0EAEF;
+}
+
+#footcol .moduletitle{
+    font-size:16px;
+    height:30px;
+    color:#000;
+}
+
+#footcol div:last{
+    border-bottom:none !important;
+}
 /************************* Кнопки настройки модулей ***************************/
 
 span.fast_cfg_link { padding:4px; }
@@ -1576,6 +1791,30 @@ span.user_karma_point{
 .board_city{
     color:#888;
 }
+
+/* ------------------------ MODULE "LATEST AFISHA ITEMS" --------------------- */
+
+.new_afisha_items li{
+	padding:0px;
+    padding-left:20px;
+    background:url(../images/icons/note.png) no-repeat left;
+    list-style:none;
+    margin:0px;
+	margin-bottom:4px;
+    font-size:14px;
+}
+.new_afisha_items li.vip a{
+    color:#ED8115;
+    font-weight:bold;
+}
+.new_afisha_items{
+	padding:0px;
+	margin:0px;
+}
+
+.afisha_city{
+    color:#888;
+}
 /* ---------------------------- MODULE "LATEST CLUBS" ----------------------- */
 
 .mod_clubs .data .details span{ color: #999; padding-left:19px; margin-right:4px; font-size:10px; height:16px;line-height:16px;display:block; }
@@ -2081,6 +2320,197 @@ div.bd_cat_main_title a{
 	color:#375E93;
 }
 div.bd_cat_main_obtypes a{
+	color:#5F98BF;
+}
+
+/* ========================================================================== */
+/* =============================== АФИША ==================================== */
+/* ========================================================================== */
+
+.af_item{
+	margin-bottom:4px;
+	border:solid 1px #C3D6DF;
+    padding:12px;
+    border-radius:8px;
+    -moz-border-radius:8px;
+}
+
+.af_item_vip{
+	margin-bottom:4px;
+	border:1px solid #FFCC99;
+	background:#FFFFD9;
+    padding:12px;
+    border-radius:8px;
+    -moz-border-radius:8px;
+}
+
+.afisha_toolbar{
+	margin-bottom:10px;
+}
+.afisha_toolbar table{
+	padding:4px;
+	background-color:#EBEBEB;
+}
+.afisha_toolbar a{
+	text-decoration:underline;
+	color:#666666;
+}
+
+div.af_title{
+	margin-bottom:0px;
+}
+
+div.af_title a{
+	font-size:16px;
+	font-weight:bold;
+	margin:0px;
+}
+
+.af_item_vip div.af_title a{
+	font-size:16px;
+	font-weight:bold;
+	margin:0px;
+    color:#ED8115;
+}
+
+img.af_image_small{
+	padding:2px;
+	border:solid 1px #C3D6DF;
+	margin-right:10px;
+}
+
+.af_item_vip img.af_image_small{
+	padding:2px;
+	border:1px solid #FFCC99;
+	margin-right:10px;
+}
+
+div.afisha_gallery{
+	margin-top:20px;
+	margin-bottom:10px;
+}
+
+.afisha_categorylist{
+    margin-bottom:30px;
+    margin-top: 10px;
+}
+
+.af_text{
+	margin:0px;
+	clear:both;
+}
+.af_moderate_link{
+	float:right;
+}
+.af_moderate_link span{
+	float:right;
+	padding:0 5px 0 18px;
+}
+div.af_item_details{
+	margin-top:20px;
+	float:right;
+}
+div.af_item_details a, .af_moderate_link a{
+	color:#666;
+}
+
+div.af_item_details_full{
+	margin-bottom:10px;
+}
+
+div.af_item_details_full a{
+	color:#666666;
+}
+
+div.af_item_details span, div.af_item_details_full span{
+	height:18px;
+	line-height:18px;
+	padding:2px;
+	padding-left:18px;
+	padding-right:10px;
+	font-size:12px;
+}
+
+.af_text_full{
+    padding:20px 15px;
+    font-size:16px;
+    -moz-border-radius:8px;
+    border-radius:8px;
+    border:1px solid #C3D6DF;
+    margin-top:15px;
+}
+
+div.af_links{
+	padding:0px;
+	margin-top:10px;
+    text-align:right;
+}
+
+div.af_links span{
+	height:18px;
+	line-height:18px;
+    padding:2px;
+	padding-left:20px;
+	padding-right:10px;
+}
+
+div.af_links span.af_message{
+	background:url(../images/icons/message.png) no-repeat 0px 2px;
+}
+div.af_links span.af_author{
+	background:url(../images/icons/posts.png) no-repeat 0px 2px;
+}
+
+span.af_item_is_vip{
+    background:url(../images/icons/vip.png) no-repeat;
+    color:#ED8115;
+    font-weight:bold;
+}
+
+span.af_item_date{
+	background:url(../images/icons/calendar.png) no-repeat;
+}
+
+span.af_item_city{
+	background:url(../images/icons/city.png) no-repeat;
+}
+span.af_item_hits{
+	background:url(../images/icons/eye.png) no-repeat scroll center left;
+}
+span.af_item_edit{
+	background:url(../images/icons/edit.png) no-repeat;
+}
+
+span.af_item_delete{
+	background:url(../images/icons/no.png) no-repeat;
+}
+span.af_item_publish{
+	background:url(../images/icons/yes.png) no-repeat;
+}
+span.af_item_user{
+	background:url(../images/icons/user.png) no-repeat;
+}
+span.af_item_cat{
+	background:url(../images/icons/folder_table.png) no-repeat;
+}
+span.af_item_status_ok{
+	color:green;
+	background:url(/components/board/images/status_ok.gif) no-repeat;
+}
+span.af_item_status_bad{
+	color:red;
+	background:url(/components/board/images/status_bad.gif) no-repeat;
+}
+
+img.af_cat_main_icon{
+	margin-right:10px;
+}
+
+div.af_cat_main_title a{
+	font-size:18px;
+	color:#375E93;
+}
+div.af_cat_main_obtypes a{
 	color:#5F98BF;
 }
 

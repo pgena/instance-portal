@@ -164,6 +164,13 @@
                             'target'  => 'subscribes/forum/{1}/0',
                             'action'  => 'rewrite'
                          );
+						 
+		$rules[] = array(
+                  'source'  => '/^id([0-9]+)$/ui',
+                  'target'  => 'users/id/{1}',
+                  'action'  => 'rewrite'
+                );
+
 
         return $rules;
 

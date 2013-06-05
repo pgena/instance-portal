@@ -31,6 +31,7 @@ function applet_main(){
 	$new['photos'] 	= (int)newContent('cms_photo_files');
 	$new['faq'] 	= (int)newContent('cms_faq_quests');
 	$new['board'] 	= (int)newContent('cms_board_items');
+	$new['afisha'] 	= (int)newContent('cms_afisha_items');
 	$new['catalog'] = (int)newContent('cms_uc_items');
 	$new['forum'] 	= (int)newContent('cms_forum_posts');
 
@@ -66,6 +67,14 @@ function applet_main(){
         <td align="center"><a href="index.php?view=components&amp;do=config&amp;id=<?php echo $cid?>&amp;opt=add_cat"><img src="/admin/images/mainpage/folder_add.png" alt="Создать рубрику" width="16" height="16" border="0" /></a></td>
         <td align="center"><a href="index.php?view=components&amp;do=config&amp;id=<?php echo $cid?>&amp;opt=add_item"><img src="/admin/images/mainpage/page_add.png" alt="Создать объявление" width="16" height="16" border="0" /></a></td>
       </tr>
+	  
+	  <tr>
+	    <?php $cid = $inDB->get_field('cms_components', "link='afisha'", 'id'); ?>
+        <td><a href="index.php?view=components&amp;do=config&amp;id=<?php echo $cid?>">Доска афиши</a> <?php if($new['afisha']) { ?><span class="new_content">+<?php echo $new['afisha']?></span><?php } ?></td>
+        <td align="center"><a href="index.php?view=components&amp;do=config&amp;id=<?php echo $cid?>&amp;opt=add_cat"><img src="/admin/images/mainpage/folder_add.png" alt="Создать рубрику" width="16" height="16" border="0" /></a></td>
+        <td align="center"><a href="index.php?view=components&amp;do=config&amp;id=<?php echo $cid?>&amp;opt=add_item"><img src="/admin/images/mainpage/page_add.png" alt="Создать мероприятие" width="16" height="16" border="0" /></a></td>
+      </tr>
+	  
       <tr>
 	    <?php $cid = $inDB->get_field('cms_components', "link='catalog'", 'id'); ?>
         <td><a href="index.php?view=components&amp;do=config&amp;id=<?php echo $cid?>">Универсальный каталог</a> <?php if($new['catalog']) { ?><span class="new_content">+<?php echo $new['catalog']?></span><?php } ?></td>
@@ -197,6 +206,8 @@ function applet_main(){
                 <td><a href="/rss/content/all/feed.rss" id="rss_link">Лента материалов</a> </td>
                 <td><img src="/images/markers/rssfeed.png" width="16" height="16" /></td>
                 <td><a href="/rss/board/all/feed.rss" id="rss_link">Лента объявлений</a> </td>
+				<td><img src="/images/markers/rssfeed.png" width="16" height="16" /></td>
+                <td><a href="/rss/board/all/feed.rss" id="rss_link">Лента афиши</a> </td>
               </tr>
               <tr>
                 <td></td>

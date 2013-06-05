@@ -18,9 +18,11 @@ if(!defined('VALID_CMS')) { die('ACCESS DENIED'); }
  * site: firs.org.ua
  */
 $_LANG['BOARD']                   ='Доска объявлений';
+$_LANG['AFISHA']                  ='Афиша';
 $_LANG['ADD_ADV']                 ='Добавить объявление';
 $_LANG['CAT_NOT_FOUND']           ='Рубрика не найдена';
 $_LANG['CAT_BOARD']               ='Рубрика';
+$_LANG['CAT_AFISHA']              ='Рубрика';
 $_LANG['MAX_VALUE_OF_ADD_ADV']    ='Достигнут предел добавлений в сутки. Вы сможете добавить объявление в эту рубрику через 24 часа.';
 $_LANG['YOU_CANT_ADD_ADV']        ='Вы не можете добавлять объявления в эту рубрику';
 $_LANG['YOU_CANT_ADD_ADV_ANY']    ='Вы не можете добавлять объявления';
@@ -59,6 +61,7 @@ $_LANG['YOU_SURE_DELETE_ADV']     ='Вы действительно желает
 $_LANG['ADV_IS_DELETED']          ='Объявление успешно удалено.';
 //Template
 $_LANG['BOARD_GUEST']             ='Гость';
+$_LANG['AFISHA_GUEST']             ='Гость';
 $_LANG['TITLE']                   ='Заголовок';
 $_LANG['CITY']                    ='Город';
 $_LANG['OR_SELECTING']            ='или выберите';

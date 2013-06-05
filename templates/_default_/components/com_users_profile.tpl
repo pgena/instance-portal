@@ -180,6 +180,10 @@
 					{if $myprofile && $cfg.sw_feed}
 						<li><a href="/actions/my_friends" title="upr_feed"><span>{$LANG.FEED}</span></a></li>
 					{/if}
+					{if $cfg.sw_friendslist}
+						<li><a href="#upr_friendslist"><span>{$LANG.FRIENDS}</span></a></li>
+					{/if}
+
 					{if $cfg.sw_clubs}
 						<li><a href="/clubs/by_user_{$usr.id}" title="upr_clubs"><span>{$LANG.CLUBS}</span></a></li>
 					{/if}
@@ -345,38 +349,40 @@
                             </div>
                         {/if}
 
-                        {if $usr.friends}
-                            <div class="usr_friends_block usr_profile_block">
-                                {if $usr.friends_total > 6}
-                                    <div class="float_bar">
-                                        <a href="/users/{$usr.id}/friendlist.html">{$LANG.ALL_FRIENDS}</a> ({$usr.friends_total})
-                                    </div>
-                                {/if}
-                                <div class="usr_wall_header">
-                                    {if !$myprofile}
-                                        {$LANG.USER_FRIENDS}
-                                    {else}
-                                        {$LANG.MY_FRIENDS}
-                                    {/if}
-                                </div>
-                                {assign var="col" value="1"}
-                                <table width="" cellpadding="5" cellspacing="0" border="0" class="usr_friends_list" align="left">
-                                  {foreach key=tid item=friend from=$usr.friends}
-                                  {if $col==1}<tr>{/if}
-                                            <td align="center" valign="top">
-                                                <div class="usr_friend_cell">
-                                                    <div align="center"><a class="friend_link" href="{profile_url login=$friend.login}">{$friend.nickname}</a></div>
-                                                    <div align="center"><a href="{profile_url login=$friend.login}"><img border="0" class="usr_img_small" src="{$friend.avatar}" /></a></div>
-                                                    <div align="center">{$friend.flogdate}</div>
-                                                </div>
-                                            </td>
+						{if !$cfg.sw_friendslist}
+							{if $usr.friends}
+								<div class="usr_friends_block usr_profile_block">
+									{if $usr.friends_total > 6}
+										<div class="float_bar">
+											<a href="/users/{$usr.id}/friendlist.html">{$LANG.ALL_FRIENDS}</a> ({$usr.friends_total})
+										</div>
+									{/if}
+									<div class="usr_wall_header">
+										{if !$myprofile}
+											{$LANG.USER_FRIENDS}
+										{else}
+											{$LANG.MY_FRIENDS}
+										{/if}
+									</div>
+									{assign var="col" value="1"}
+									<table width="" cellpadding="5" cellspacing="0" border="0" class="usr_friends_list" align="left">
+									  {foreach key=tid item=friend from=$usr.friends}
+									  {if $col==1}<tr>{/if}
+												<td align="center" valign="top">
+													<div class="usr_friend_cell">
+														<div align="center"><a class="friend_link" href="{profile_url login=$friend.login}">{$friend.nickname}</a></div>
+														<div align="center"><a href="{profile_url login=$friend.login}"><img border="0" class="usr_img_small" src="{$friend.avatar}" /></a></div>
+														<div align="center">{$friend.flogdate}</div>
+													</div>
+												</td>
 
-                                      {if $col==6} </tr> {assign var="col" value="1"} {else} {math equation="x + 1" x=$col assign="col"} {/if}
-                                  {/foreach}
-                                  {if $col>1}<td colspan="{math equation="x - 6 + 1" x=$col}">&nbsp;</td></tr>{/if}
-                                </table>
-                            </div>
-                        {/if}
+										  {if $col==6} </tr> {assign var="col" value="1"} {else} {math equation="x + 1" x=$col assign="col"} {/if}
+									  {/foreach}
+									  {if $col>1}<td colspan="{math equation="x - 6 + 1" x=$col}">&nbsp;</td></tr>{/if}
+									</table>
+								</div>
+							{/if}
+						{/if}
 
 						{if $cfg.sw_wall}
 							<div class="usr_wall usr_profile_block">
@@ -401,6 +407,84 @@
 					<div id="upr_feed">
 
 					</div>
+				{/if}
+				
+				{* ============================== ЗАКЛАДКА С ДРУЗЬЯМИ =================================== *}
+				{if $cfg.sw_friendslist}
+					{if $myprofile}
+						<div id="upr_friendslist">
+							{if !$usr.friendslist}
+								<a href="/users/">{$LANG.GET_FRIENDS}</a>
+							{/if}
+							{if $usr.friendslist}
+							<div class="users_list">
+							<table width="100%" cellspacing="0" cellpadding="0" class="users_list">
+								{if $usr.friendslist}
+								{foreach key=tid item=friend from=$usr.friendslist}
+									<tr id="friend_id_{$usr.friendslist.id}">
+										<td width="80" valign="top"><a href="{profile_url login=$friend.login}"><img border="0" class="usr_img_small" src="{$friend.avatar}" /></a></td>
+										<td valign="top">
+									<div class="status">{$friend.flogdate}	<br />
+									<a href="javascript:void(0)" class="ajaxlink" onclick="users.sendMess('{$friend.id}', 0, this);return false;" title="{$LANG.WRITE_MESS}: {$friendslist.nickname|escape:'html'}">{$LANG.WRITE_MESS}</a> 
+										{if $myprofile}<br />
+											<a href="javascript:void(0)" title="{$friend.nickname|escape:'html'}" onclick="users.delFriend('{$friend.id}', this);return false;" class="ajaxlink">{$LANG.STOP_FRIENDLY}</a>{/if} 
+									</div>
+									<div align="left"><a class="friend_link" href="{profile_url login=$friend.login}">{$friend.nickname}</a></div>
+									{if $friend.status}
+										<span class="center">{$friend.status}</span>
+									{/if} 
+									</td>
+									</tr>
+								{/foreach}
+								{/if}
+							</table>
+							</div>
+							{$pagebar}
+							{/if}
+						</div>
+					{/if}
+					{if !$myprofile}
+						<div id="upr_friendslist">
+							{if !$usr.friendslist}
+								{$LANG.USER_NO_FRIEND} <a class="" href="javascript:void(0)" title="{$usr.nickname|escape:'html'}" onclick="users.addFriend('{$usr.id}', this);return false;">{$LANG.FRIENDSHIP_OFFER}</a>
+							{/if}
+							{if $usr.friendslist}
+							<div class="users_list">
+							<table width="100%" cellspacing="0" cellpadding="0" class="users_list">
+
+								{foreach key=tid item=friend from=$usr.friendslist}
+									<tr id="friend_id_{$usr.friendslist.id}">
+										<td width="80" valign="top"><a href="{profile_url login=$friend.login}"><img border="0" class="usr_img_small" src="{$friend.avatar}" /></a></td>
+										<td valign="top">
+											<div class="status">{$friend.flogdate}	<br />
+											<a href="javascript:void(0)" class="ajaxlink" onclick="users.sendMess('{$friend.id}', 0, this);return false;" title="{$LANG.WRITE_MESS}: {$friendslist.nickname|escape:'html'}">{$LANG.WRITE_MESS}</a> 
+											
+											{*--------------
+											----------------
+											----------------
+											{if !$friend.isfriend}
+											<br />
+												<a class="ajaxlink" href="javascript:void(0)" title="{$friend.nickname|escape:'html'}" onclick="users.addFriend('{$friend.id}', this);return false;">{$LANG.ADD_TO_FRIEND}</a>
+											{/if}
+											----------------
+											----------------
+											----------------*}
+											
+											</div>
+											<div align="left"><a class="friend_link" href="{profile_url login=$friend.login}">{$friend.nickname}</a></div>
+											{if $friend.status}
+												<span class="center">{$friend.status}</span>
+											{/if} 
+										</td>
+									</tr>
+								{/foreach}
+
+							</table>
+							</div>
+							{$pagebar}
+							{/if}
+						</div>
+					{/if}
 				{/if}
 
 				{* ============================== ЗАКЛАДКА №5 ============================================== *}

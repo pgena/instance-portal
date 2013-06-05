@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<backend>
+    <params>
+        <param type="flag" name="tags" title="Вставлять в карту для google теги видео (Внимание это увеличивает число запросов в БД на количество роликов)" default="off" />
+    </params>
+</backend>
