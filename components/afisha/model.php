@@ -209,6 +209,11 @@ class cms_model_afisha{
     public function getPublicCats($sel = '', $is_edit = false) {
 
         $nested_sets = $this->inCore->nestedSetsInit('cms_afisha_cats');
+
+        if (!$this->root_cat['id']) {
+            return array();
+        }
+
         $rs_rows     = $nested_sets->SelectSubNodes($this->root_cat['id']);
 
         if ($rs_rows){
@@ -381,9 +386,36 @@ class cms_model_afisha{
 		$inUser = cmsUser::getInstance();
         $item = cmsCore::callEvent('ADD_AFISHA_RECORD', $item);
 
-        $sql = "INSERT INTO cms_afisha_items (category_id, user_id, obtype, title , content, formsdata, city, pubdate, pubdays, published, file, hits, ip)
-                VALUES ({$item['category_id']}, {$item['user_id']}, '{$item['obtype']}', '{$item['title']}', '{$item['content']}', '{$item['formsdata']}',
-                        '{$item['city']}', NOW(), {$item['pubdays']}, {$item['published']}, '{$item['file']}', 0, INET_ATON('{$inUser->ip}'))";
+        $sql = "INSERT INTO `cms_afisha_items` (
+                  category_id,
+                  user_id,
+                  obtype,
+                  title ,
+                  content,
+                  formsdata,
+                  city,
+                  pubdate,
+                  pubdays,
+                  published,
+                  file,
+                  hits,
+                  ip)
+                VALUES (
+                  {$item['category_id']},
+                  {$item['user_id']},
+                  '{$item['obtype']}',
+                  '{$item['title']}',
+                  '{$item['content']}',
+                  '{$item['formsdata']}',
+                  '{$item['city']}',
+                  NOW(),
+                  {$item['pubdays']},
+                  {$item['published']},
+                  '{$item['file']}',
+                  0,
+                  INET_ATON('{$inUser->ip}'))";
+
+                    var_dump($sql); die;
 
         $this->inDB->query($sql);
 
