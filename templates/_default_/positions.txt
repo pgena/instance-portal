@@ -1,4 +1,4 @@
-#
+﻿#
 #  В этом файле перечислены все позиции, предусмотренные для                        
 #  вывода модулей в шаблоне DEFAULT.
 #  
@@ -7,9 +7,20 @@
 #  Затем в нужном месте шаблона вставьте код: <?php echo cmsModule("название_позиции");?>
 #
 #
-sidebar
-maintop
-mainbottom
-top
-topmenu
+head1
+head2
+head3
 header
+topmenu
+top
+maintop
+maincol1
+maincol2
+mainbottom
+sidebar
+footmenu
+footcol1
+footcol2
+footcol3
+
+

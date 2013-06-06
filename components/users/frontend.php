@@ -320,6 +320,12 @@ if ($do=='profile'){
 
     if(is_numeric($login)) { cmsCore::error404(); }
 
+	$uid_cn = cmsCore::request('id_id', 'int');
+	if($uid_cn){
+	$login = $inDB->get_field('cms_users','`id`='.$uid_cn,'login'); 
+	}
+
+	
     $usr = $model->getUser($login);
     if (!$usr){ cmsCore::error404(); }
 
@@ -349,10 +355,13 @@ if ($do=='profile'){
 	// Данные о друзьях
 	$usr['friends_total'] = cmsUser::getFriendsCount($usr['id']);
 	$usr['friends']		  = cmsUser::getFriends($usr['id']);
+	$usr['friendslist']		  = cmsUser::getFriends($usr['id']);
 	// очищать сессию друзей если в своем профиле и количество друзей из базы не совпадает с количеством друзей в сессии
 	if ($myprofile && sizeof($usr['friends']) != $usr['friends_total']) { cmsUser::clearSessionFriends(); }
+	if ($myprofile && sizeof($usr['friendslist']) != $usr['friends_total']) { cmsUser::clearSessionFriends(); }
 	// обрезаем список
 	$usr['friends'] = array_slice($usr['friends'], 0, 6);
+	$usr['friendslist'] = array_slice($usr['friendslist'], 0, 1000);
 	// выясняем друзья ли мы с текущим пользователем
     $usr['isfriend'] = !$myprofile ? cmsUser::isFriend($usr['id']) : false;
 
@@ -380,6 +389,8 @@ if ($do=='profile'){
 
     $usr['board_count']    = $model->config['sw_board'] ?
 								$inDB->rows_count('cms_board_items', "user_id='{$usr['id']}' AND published=1") : 0;
+	$usr['afisha_count']    = $model->config['sw_afisha'] ?
+								$inDB->rows_count('cms_afisha_items', "user_id='{$usr['id']}' AND published=1") : 0;
     $usr['comments_count'] = $model->config['sw_comm'] ?
 								$inDB->rows_count('cms_comments', "user_id='{$usr['id']}' AND published=1") : 0;
 	$usr['forum_count']    = $model->config['sw_forum'] ?

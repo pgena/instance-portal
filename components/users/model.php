@@ -39,6 +39,7 @@ class cms_model_users{
 				'sw_feed'=>1,
 				'sw_awards'=>1,
 				'sw_board'=>1,
+				'sw_afisha'=>1,
 				'sw_msg'=>1,
 				'sw_guest'=>1,
 				'sw_gifts'=>1,

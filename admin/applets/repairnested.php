@@ -142,6 +142,10 @@ function applet_repairnested(){
 	$tables[3]['name']	 	= 'cms_board_cats';
 	$tables[3]['title']		= 'Дерево разделов доски объявлений';
 	$tables[3]['differ']	= '';	
+	
+	$tables[3]['name']	 	= 'cms_afisha_cats';
+	$tables[3]['title']		= 'Дерево разделов доски мероприятий';
+	$tables[3]['differ']	= '';
 
 	$tables[4]['name']	 	= 'cms_uc_cats';
 	$tables[4]['title']		= 'Дерево разделов каталога';

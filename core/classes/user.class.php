@@ -1535,7 +1535,10 @@ class cmsUser {
             global $_LANG;
             return 'javascript:core.alert(\''.$_LANG['USER_IS_DELETE'].'\',\''.$_LANG['ATTENTION'].'\');';
         }
-        return '/' . self::PROFILE_LINK_PREFIX . urlencode($user_login);
+        //return '/' . self::PROFILE_LINK_PREFIX . urlencode($user_login);
+		$id = cmsDatabase::getInstance()->get_field('cms_users',"`login` = '{$user_login}'" ,'id');
+		return '/id' .$id;
+
     }
 
 // ============================================================================ //

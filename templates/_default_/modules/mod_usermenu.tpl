@@ -1,7 +1,7 @@
 <div class="mod_user_menu">
 
     <span class="my_profile">
-        <a href="{profile_url login=$login}">{$nickname}</a>
+        <a href="{profile_url login=$login}">{$LANG.MY_PROFILE}</a>
     </span>
 
     {if $is_billing}

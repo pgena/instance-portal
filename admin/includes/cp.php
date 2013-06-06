@@ -841,6 +841,17 @@ function cpBoardCatById($id){
 
 }
 
+function cpAfishaCatById($id){
+
+	$result = dbQuery("SELECT title FROM cms_afisha_cats WHERE id = $id") ;
+
+	if (mysql_num_rows($result)) {
+		$cat = mysql_fetch_assoc($result);
+		return '<a href="index.php?view=components&do=config&id='.$_REQUEST['id'].'&opt=edit_cat&item_id='.$id.'">'.$cat['title'].'</a> ('.$id.')';
+	} else { return '--'; }
+
+}
+
 
 function cpGroupById($id){
 

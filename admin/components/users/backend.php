@@ -50,8 +50,10 @@ if ($opt=='saveconfig'){
     $cfg['sw_blogs']  = cmsCore::request('sw_blogs', 'int', 0);
     $cfg['sw_clubs']  = cmsCore::request('sw_clubs', 'int', 0);
     $cfg['sw_feed']   = cmsCore::request('sw_feed', 'int', 0);
+	$cfg['sw_friendslist'] = cmsCore::request('sw_friendslist', 'int', 0);
     $cfg['sw_awards'] = cmsCore::request('sw_awards', 'int', 0);
     $cfg['sw_board']  = cmsCore::request('sw_board', 'int', 0);
+	$cfg['sw_afisha']  = cmsCore::request('sw_afisha', 'int', 0);
     $cfg['sw_msg']    = cmsCore::request('sw_msg', 'int', 0);
     $cfg['sw_guest']  = cmsCore::request('sw_guest', 'int', 0);
     $cfg['sw_files']  = cmsCore::request('sw_files', 'int', 0);
@@ -156,6 +158,13 @@ if ($opt=='saveconfig'){
                     <label><input name="sw_board" type="radio" value="0" <?php if (!$model->config['sw_board']) { echo 'checked="checked"'; } ?>/> Выкл</label>
                 </td>
             </tr>
+			<tr>
+                <td><strong>Показывать объявления пользователя:</strong></td>
+                <td>
+                    <label><input name="sw_afisha" type="radio" value="1" <?php if ($model->config['sw_afisha']) { echo 'checked="checked"'; } ?>/> Вкл</label>
+                    <label><input name="sw_afisha" type="radio" value="0" <?php if (!$model->config['sw_afisha']) { echo 'checked="checked"'; } ?>/> Выкл</label>
+                </td>
+            </tr>
             <tr>
                 <td><strong>Личные сообщения:</strong> </td>
                 <td>
@@ -237,6 +246,13 @@ if ($opt=='saveconfig'){
                     <label><input name="sw_feed" type="radio" value="0" <?php if (!$model->config['sw_feed']) { echo 'checked="checked"'; } ?>/> Выкл</label>
                 </td>
             </tr>
+			<tr>
+			<td><strong>Вкладка "Друзья":</strong></td>
+                <td>
+                    <label><input name="sw_friendslist" type="radio" value="1" <?php if ($model->config['sw_friendslist']) { echo 'checked="checked"'; } ?>/> Вкл</label>
+                    <label><input name="sw_friendslist" type="radio" value="0" <?php if (!$model->config['sw_friendslist']) { echo 'checked="checked"'; } ?>/> Выкл</label>
+                </td>
+			</tr>
             <tr>
                 <td><strong>Вкладка "Клубы":</strong></td>
                 <td>

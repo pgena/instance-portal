@@ -13,6 +13,7 @@
 
 if(!defined('VALID_CMS')) { die('ACCESS DENIED'); }
 
+$_LANG['MY_PROFILE']                   ='Моя страница';
 $_LANG['USERMENU_MESS']                ='Сообщения';
 $_LANG['USERMENU_MY_BLOG']             ='Блог';
 $_LANG['USERMENU_PHOTOS']              ='Фото';

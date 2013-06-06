@@ -361,12 +361,12 @@ if ($do == 'config'){
 		// Получаем список участников
 		$members = $model->getClubMembersIds();
 		// Формируем список друзей, которые еще не в клубе
-		foreach($friends as $key=>$friend){
-			if (!in_array($friend['id'], $members) && $friend['id'] != $club['admin_id']){
-				$friends_list .= '<option value="'.$friend['id'].'">'.$friend['nickname'].'</option>';
-				$friends_ids[] = $friend['id'];
-			}
-		}
+		//foreach($friends as $key=>$friend){
+		//	if (!in_array($friend['id'], $members) && $friend['id'] != $club['admin_id']){
+		//		$friends_list .= '<option value="'.$friend['id'].'">'.$friend['nickname'].'</option>';
+		//		$friends_ids[] = $friend['id'];
+		//	}
+		//}
 
 		// Получаем модераторов клуба
 		$moderators = $model->getClubMembersIds('moderator');
@@ -385,7 +385,7 @@ if ($do == 'config'){
         $smarty->assign('club', $club);
         $smarty->assign('moders_list', $moders_list);
         $smarty->assign('members_list', $members_list);
-        $smarty->assign('friends_list', $friends_list);
+        //$smarty->assign('friends_list', $friends_list);
 		$smarty->assign('fr_members_list', $fr_members_list);
 		$smarty->assign('is_billing', IS_BILLING);
 		$smarty->assign('is_admin', $inUser->is_admin);
