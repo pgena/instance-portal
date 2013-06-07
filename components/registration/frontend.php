@@ -202,7 +202,7 @@ if ($do=='register'){
     if(!cmsCore::checkCaptchaCode(cmsCore::request('code', 'str'))) { cmsCore::addSessionMessage($_LANG['ERR_CAPTCHA'], 'error'); $errors = true; }
 
     // проверяем есть ли такой пользователь
-    $user_exist = $inDB->get_fields('cms_users', "(login LIKE '{$item['login']}' OR email LIKE '{$item['email']}') AND is_deleted = 0", 'id, login, email');
+    $user_exist = $inDB->get_fields('cms_users', "(login LIKE '{$item['login']}' OR email LIKE '{$item['email']}')", 'id, login, email');
     if($user_exist){
         if($user_exist['login'] == $item['login']){
             cmsCore::addSessionMessage($_LANG['LOGIN'].' "'.$item['login'].'" '.$_LANG['IS_BUSY'], 'error'); $errors = true;

@@ -17,9 +17,11 @@
                         <a href="{profile_url login=$record.author_login}"><img border="0" class="usr_img_small" src="{$record.avatar}" /></a>
                     </div>
                 </td>
-                <td width="" valign="top" class="usr_wall_text">{$record.content}</td>
+				<td width="" valign="top" style="display:none;" class="usr_wall_text full">{$record.content}</td>
+				<td width="" valign="top" class="usr_wall_text short">{$record.content|truncate:500}</td>
             </tr>
             </table>
+			{if (($record.content|strlen > 500) || (strpos($record.content, '<img')))}<span class="toggelator">Развернуть</span>{/if}
         </div>
     {/foreach}
 
@@ -28,3 +30,17 @@
 {else}
     <p>{$LANG.NOT_POSTS_ON_WALL_TEXT}</p>
 {/if}
+{literal}
+<script type="text/javascript">
+	$('document').ready(function(){
+		$('span.toggelator').click(function(event){
+			var element = $(event.target);
+			$('table td.usr_wall_text', $(element).parent()).toggle();
+		})
+	});
+</script>
+<style>
+	.usr_wall_text.full { max-width:550px;}
+	.usr_wall_text.short { max-height:150px; max-width:550px; overflow:hidden; display: inline-block;}
+</style>
+{/literal}

@@ -2764,7 +2764,7 @@ table.club_full_entry .data .details span.rating{ background:url(../images/icons
 table.club_full_entry .data .details span.date{ background:url(../images/icons/calendar.png) no-repeat left center; }
 table.club_full_entry .data .details span.members{ background:url(../images/icons/groups/registered.png) no-repeat left center; }
 
-table.club_full_entry .data .description { margin-right:20px; margin-left:8px; margin-bottom:5px; clear:both; }
+table.club_full_entry .data .description { margin-right:20px; margin-left:8px; margin-bottom:5px; clear:both;}
 
 table.club_full_entry .members_list { width:200px; clear:both; }
 table.club_full_entry .members_list .title { margin-bottom:10px; padding-top:8px; padding-left: 8px; font-weight:bold; }
@@ -4568,3 +4568,11 @@ span.ajax-loader {
     font-size: 18px;
 }
 /** Ajax intive club [AM][end] **/
+
+.myButton {
+ color:#0099CC; border-bottom:dashed 1px #0099CC; }
+.myButton, .MultiFile-remove{
+    text-decoration:none;
+    border-bottom:dashed 1px #375E93;
+    color:#375E93;
+}

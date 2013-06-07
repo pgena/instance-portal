@@ -1,7 +1,6 @@
 {* ================================================================================ *}
 {* ========================= Просмотр клуба ======================================= *}
 {* ================================================================================ *}
-
 <div class="con_heading">{$club.title}</div>
 
 {if $is_access}
@@ -50,8 +49,11 @@
                     <span class="date">{$club.fpubdate}</span>
                 </div>
                 <div class="description">
-                    {$club.description}
+					<div style="display:none" class="full">{$club.description}</div>
+					<div class="short">{$club.description|truncate:500}</div>
+				<span class="toggelator">Развернуть</span>	
                 </div>
+				
                 {if $is_member || $is_admin || $is_moder || $user_id}
                 <div class="clubmenu">
                     {if $is_admin}
@@ -148,3 +150,18 @@
     <p>{$LANG.CLUB_PRIVATE}</p>
     <p>{$LANG.CLUB_ADMIN}: <a href="{profile_url login=$club.login}">{$club.nickname}</a></p>
 {/if}
+
+{literal}
+<script type="text/javascript">
+	$('document').ready(function(){
+		$('span.toggelator').click(function(event){
+			var element = $(event.target);
+			$('div.wall_post_text', $(element).parent()).toggle();
+			//alert('123');
+		})
+	});
+</script>
+<style>
+	.short { max-height:150px; overflow:hidden; display: inline-block;}
+</style>
+{/literal}
