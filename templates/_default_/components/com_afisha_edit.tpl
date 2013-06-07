@@ -1,3 +1,14 @@
+<script src="/includes/jquery/ui.core.js" type="text/javascript"></script>
+<script src="/includes/jquery/ui.datepicker.js" type="text/javascript"></script>
+<link href="/css/ui.datepicker.css" rel="stylesheet" type="text/css">
+{literal}
+<script type="text/javascript">
+    var params = {dateFormat: 'yy-mm-dd'}
+    $(document).ready(function(){
+        $('#act_date').datepicker(params);
+    });
+</script>
+{/literal}
 <h1 class="con_heading">{$pagetitle}</h1>
 <form action="{$action}" method="post" enctype="multipart/form-data">
 	<table cellpadding="5">
@@ -64,6 +75,12 @@
 				<td><input name="Filedata" type="file" id="picture" style="width:407px;" /></td>
 			</tr>
 		{/if}
+        <tr>
+            <td><span>{$LANG.ACTION_DATE}:</span></td>
+            <td>
+                <input type="text" value="" name="act_date" id="act_date" class="text-input" readonly="readonly">
+            </td>
+        </tr>
 		{if $form_do == 'edit'}
 			<tr>
 				<td height="35"><span>{$LANG.PERIOD_PUBL}:</span></td>

@@ -331,6 +331,14 @@ if ($do=='additem'){
 			if($field_error){ cmsCore::addSessionMessage($field_error, 'error'); $errors = true; }
 		}
 
+        $actionDate = cmsCore::request('act_date', 'str', date('Y-m-d',time()));
+
+        if (!preg_match('/^[\d]{4}-[\d]{2}-[\d]{2}$/', $actionDate)) {
+            cmsCore::addSessionMessage($_LANG['INCORRECT_ACTION_DATE'], 'error'); $errors = true;
+        } else {
+            $actionDate .= ' 09:00:00';
+        }
+
         if ($errors){
 			$item['content'] = htmlspecialchars(stripslashes($_REQUEST['content']));
 			$item['city']    = stripslashes($city);
@@ -358,7 +366,8 @@ if ($do=='additem'){
                                     'city'=>$city,
                                     'pubdays'=>$pubdays,
                                     'published'=>$published,
-                                    'file'=>$file['filename']
+                                    'file'=>$file['filename'],
+                                    'action_date' => $actionDate,
                                 ));
 
         if ($inUser->is_admin && $vipdays){
