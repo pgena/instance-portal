@@ -1,7 +1,6 @@
 {* ================================================================================ *}
 {* ========================= Просмотр клуба ======================================= *}
 {* ================================================================================ *}
-
 <div class="con_heading">{$club.title}</div>
 
 {if $is_access}
@@ -50,7 +49,10 @@
                     <span class="date">{$club.fpubdate}</span>
                 </div>
                 <div class="description">
-                    {$club.description}
+					<a class="myButton" onclick="$('#one').slideToggle(1);$('#two').slideToggle(1);$('#description').slideToggle(1);$('#descriptionmini').slideToggle(1);" href="javascript://" id="two">{$LANG.UNFOLD}</a>
+					<a class="myButton" style="display:none" onclick="$('#one').slideToggle(1);$('#two').slideToggle(1);$('#description').slideToggle(1);$('#descriptionmini').slideToggle(1);" id="one" href="javascript://">{$LANG.FOLD}</a> 
+					<div id="description" style="display:none">{$club.description}</div>
+					<div id="descriptionmini">{$club.description|truncate:250}</div>
                 </div>
                 {if $is_member || $is_admin || $is_moder || $user_id}
                 <div class="clubmenu">
