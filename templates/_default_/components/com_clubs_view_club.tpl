@@ -49,11 +49,11 @@
                     <span class="date">{$club.fpubdate}</span>
                 </div>
                 <div class="description">
-					<a class="myButton" onclick="$('#one').slideToggle(1);$('#two').slideToggle(1);$('#description').slideToggle(1);$('#descriptionmini').slideToggle(1);" href="javascript://" id="two">{$LANG.UNFOLD}</a>
-					<a class="myButton" style="display:none" onclick="$('#one').slideToggle(1);$('#two').slideToggle(1);$('#description').slideToggle(1);$('#descriptionmini').slideToggle(1);" id="one" href="javascript://">{$LANG.FOLD}</a> 
-					<div id="description" style="display:none">{$club.description}</div>
-					<div id="descriptionmini">{$club.description|truncate:250}</div>
+					<div style="display:none" class="full">{$club.description}</div>
+					<div class="short">{$club.description|truncate:500}</div>
+				<span class="toggelator">Развернуть</span>	
                 </div>
+				
                 {if $is_member || $is_admin || $is_moder || $user_id}
                 <div class="clubmenu">
                     {if $is_admin}
@@ -150,3 +150,18 @@
     <p>{$LANG.CLUB_PRIVATE}</p>
     <p>{$LANG.CLUB_ADMIN}: <a href="{profile_url login=$club.login}">{$club.nickname}</a></p>
 {/if}
+
+{literal}
+<script type="text/javascript">
+	$('document').ready(function(){
+		$('span.toggelator').click(function(event){
+			var element = $(event.target);
+			$('div.wall_post_text', $(element).parent()).toggle();
+			//alert('123');
+		})
+	});
+</script>
+<style>
+	.short { max-height:150px; overflow:hidden; display: inline-block;}
+</style>
+{/literal}
