@@ -381,9 +381,34 @@ class cms_model_afisha{
 		$inUser = cmsUser::getInstance();
         $item = cmsCore::callEvent('ADD_AFISHA_RECORD', $item);
 
-        $sql = "INSERT INTO cms_afisha_items (category_id, user_id, obtype, title , content, formsdata, city, pubdate, pubdays, published, file, hits, ip)
-                VALUES ({$item['category_id']}, {$item['user_id']}, '{$item['obtype']}', '{$item['title']}', '{$item['content']}', '{$item['formsdata']}',
-                        '{$item['city']}', NOW(), {$item['pubdays']}, {$item['published']}, '{$item['file']}', 0, INET_ATON('{$inUser->ip}'))";
+        $sql = "INSERT INTO cms_afisha_items (
+                  category_id,
+                  user_id,
+                  obtype,
+                  title ,
+                  content,
+                  formsdata,
+                  city,
+                  pubdate,
+                  pubdays,
+                  published,
+                  file,
+                  hits,
+                  ip)
+                VALUES (
+                  {$item['category_id']},
+                  {$item['user_id']},
+                  '{$item['obtype']}',
+                  '{$item['title']}',
+                  '{$item['content']}',
+                  '{$item['formsdata']}',
+                  '{$item['city']}',
+                  '{$item['action_date']}',
+                  {$item['pubdays']},
+                  {$item['published']},
+                  '{$item['file']}',
+                  0,
+                  INET_ATON('{$inUser->ip}'))";
 
         $this->inDB->query($sql);
 
