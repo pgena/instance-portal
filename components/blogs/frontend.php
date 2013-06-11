@@ -513,7 +513,7 @@ if ($do=='newpost' || $do=='editpost'){
         $cat_list = cmsCore::getListItems('cms_blog_cats', $post['cat_id'], 'id', 'ASC', "blog_id = '{$blog['id']}'");
 
         //получаем код панелей bbcode и смайлов
-        $bb_toolbar = cmsPage::getBBCodeToolbar('message',$model->config['img_on'], 'blogs', 'post', $post_id);
+        $bb_toolbar = cmsPage::getBBCodeToolbar('message', $model->config['video_on'], $model->config['audio_on'], $model->config['img_on'], 'blogs', 'post', $post_id);
         $smilies    = cmsPage::getSmilesPanel('message');
 
         $inCore->initAutoGrowText('#message');

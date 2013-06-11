@@ -132,32 +132,73 @@ $(function(){
 	}
 });
 
-function setStatus(user_id){
 
-    var new_status = prompt('Введите ваше статусное сообщение (максимум 140 символов):');
-
-    if (new_status.length > 140) {
-        new_status = new_status.substr(0, 140);
-    }
-
-    if (new_status) {
-        $('.usr_status_text').show();
-        $('.usr_status_date').show();
-        $('.usr_status_bar').fadeOut();
-        $('.usr_status_text span').eq(0).html(new_status);
-        $('.usr_status_date').html('// Только что');
-        $('.usr_status_bar').fadeIn();
-    } else {
-        if (new_status == ''){
-            $('.usr_status_text').hide();
-            $('.usr_status_date').hide();
+function userProfile(id, isOwner)
+{
+    this.cfg = {
+        user: id,
+        owner: isOwner,
+        status:{
+            wrapStatusId: '#usr_status_link',
+            wrapTime: '.usr_status_date',
+            wrapEditor: '#status_editor',
+            textStatus: '#status_text',
+            setTextInput: '#set_text',
+            SaveElement: '#save_status',
+            noStatus: 'изменить статус',
+            noStatusClass: 'no_status',
+            timeChanged: '// Только что'
         }
     }
 
-    if (user_id==undefined){ user_id = 0; }
+    if(id){
+        this.init();
+    }
 
-    if (new_status || new_status == '') {
-        $.post('/components/users/ajax/status.php', {'status': new_status, 'id': user_id}, function(data){});
+}
+
+userProfile.prototype = {
+    data: {
+        status: ''
+    },
+    init: function(){
+        if(this.cfg.owner){
+            this.setStatus();
+        } else {
+
+        }
+    },
+    setStatus: function(){
+        var that = this;
+        $(this.cfg.status.wrapStatusId).click(function(){
+            $(that.cfg.status.wrapEditor).fadeIn({duration: 120});
+            $(that.cfg.status.setTextInput)[0].value = $(that.cfg.status.wrapStatusId).hasClass(that.cfg.status.noStatusClass) ? '' : $($(that.cfg.status.wrapStatusId)[0]).html();
+
+            var firstClick = true;
+            $(document).bind('click.changeStatus', function(e) {
+                if (!firstClick && $(e.target).closest(that.cfg.status.wrapEditor).length == 0) {
+                    $(that.cfg.status.wrapEditor).fadeOut();
+                    $(document).unbind('click.changeStatus');
+                }
+                firstClick = false;
+            });
+        });
+
+        $(this.cfg.status.SaveElement).click(function(){
+            $.post('/components/users/ajax/status.php', {'status': $(that.cfg.status.setTextInput)[0].value, 'id': that.cfg.user});
+            var newStatus = $(that.cfg.status.setTextInput)[0].value;
+                if(newStatus){
+                    $($(that.cfg.status.wrapStatusId)[0]).html(newStatus);
+                    $(that.cfg.status.wrapStatusId).removeClass(that.cfg.status.noStatusClass);
+                    $(that.cfg.status.wrapTime).html(that.cfg.status.timeChanged);
+                } else {
+                    $($(that.cfg.status.wrapStatusId)[0]).html(that.cfg.status.noStatus);
+                    $(that.cfg.status.wrapStatusId).addClass(that.cfg.status.noStatusClass);
+                    $(that.cfg.status.wrapTime).html('');
+                }
+                $(that.cfg.status.wrapEditor).fadeOut();
+        });
+
     }
 
 }

@@ -544,11 +544,13 @@ public static function getMetaSearchLink($link, $text){
  * @param string $placekind
  * @return html
  */
-public static function getBBCodeToolbar($field_id, $images=0, $component='forum', $target='post', $target_id=0){
+public static function getBBCodeToolbar($field_id, $videos=0, $audios=0, $images=0, $component='forum', $target='post', $target_id=0){
 
     // Поддержка плагинов панели ббкодов (ее замены)
     $p_toolbar = cmsCore::callEvent('REPLACE_BBCODE_BUTTONS', array('html' => '',
                                                                 'field_id' => $field_id,
+                                                                'videos' => $videos,
+                                                                'audios' => $audios,
 																'images' => $images,
 																'component' => $component,
 																'target' => $target,
@@ -565,6 +567,8 @@ public static function getBBCodeToolbar($field_id, $images=0, $component='forum'
 
 	ob_start();
 	self::includeTemplateFile('special/bbcode_panel.php', array('field_id' => $field_id,
+																'videos' => $videos,
+                                                                'audios' => $audios,
 																'images' => $images,
 																'component' => $component,
 																'target' => $target,

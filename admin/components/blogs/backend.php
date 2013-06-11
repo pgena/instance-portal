@@ -119,10 +119,12 @@ if(!defined('VALID_CMS_ADMIN')) { die('ACCESS DENIED'); }
 		$cfg['min_karma_private'] 	= $inCore->request('min_karma_private', 'int');
 		$cfg['min_karma_public'] 	= $inCore->request('min_karma_public', 'int');
 		$cfg['min_karma'] 			= $inCore->request('min_karma', 'int');
-		$cfg['list_min_rating']    = $inCore->request('list_min_rating', 'int');
+		$cfg['list_min_rating']     = $inCore->request('list_min_rating', 'int');
 
 		$cfg['watermark'] 			= $inCore->request('watermark', 'int');
 		$cfg['img_on'] 				= $inCore->request('img_on', 'int');
+		$cfg['audio_on'] 			= $inCore->request('audio_on', 'int');
+		$cfg['video_on'] 			= $inCore->request('video_on', 'int');
 
 		$cfg['update_seo_link_blog'] = $inCore->request('update_seo_link_blog', 'int');
 
@@ -204,11 +206,28 @@ if(!defined('VALID_CMS_ADMIN')) { die('ACCESS DENIED'); }
                 <input name="perpage_blog" type="text" id="perpage_blog" value="<?php echo @$cfg['perpage_blog'];?>" size="5" /> шт.
             </td>
         </tr>
+		<tr>
+            <td colspan="2" valign="top" bgcolor="#EBEBEB"><h4>Опции медиа</h4></td>
+        </tr>
+        <tr>
+            <td valign="top"><strong>Разрешить загрузку аудио:</strong></td>
+            <td width="100" valign="top">
+                <input name="audio_on" type="radio" value="1" <?php if (@$cfg['audio_on']) { echo 'checked="checked"'; } ?> /> Да
+                <input name="audio_on" type="radio" value="0" <?php if (@!$cfg['audio_on']) { echo 'checked="checked"'; } ?>/> Нет
+            </td>
+        </tr>
+		<tr>
+            <td valign="top"><strong>Разрешить загрузку видео:</strong></td>
+            <td width="100" valign="top">
+                <input name="video_on" type="radio" value="1" <?php if (@$cfg['video_on']) { echo 'checked="checked"'; } ?> /> Да
+                <input name="video_on" type="radio" value="0" <?php if (@!$cfg['video_on']) { echo 'checked="checked"'; } ?>/> Нет
+            </td>
+        </tr>
         <tr>
             <td colspan="2" valign="top" bgcolor="#EBEBEB"><h4>Опции фотографий</h4></td>
         </tr>
         <tr>
-            <td valign="top"><strong>Разрешить загрузку фотографий к постам в блоге:</strong></td>
+            <td valign="top"><strong>Разрешить загрузку фотографий:</strong></td>
             <td width="100" valign="top">
                 <input name="img_on" type="radio" value="1" <?php if (@$cfg['img_on']) { echo 'checked="checked"'; } ?> /> Да
                 <input name="img_on" type="radio" value="0" <?php if (@!$cfg['img_on']) { echo 'checked="checked"'; } ?>/> Нет

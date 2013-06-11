@@ -1,10 +1,14 @@
 {add_js file='includes/jquery/tabs/jquery.ui.min.js'}
+{if !$is_auth}{add_js file='components/users/js/profile.js'}{/if}
+
 {add_css file='includes/jquery/tabs/tabs.css'}
+
 
 {literal}
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$("#profiletabs > ul#tabs").tabs();
+            var userProf = new userProfile({/literal}{$usr.id} {if $myprofile || $is_admin}, true{/if}{literal});
+            $("#profiletabs > ul#tabs").tabs();
 		});
 	</script>
 {/literal}
@@ -45,13 +49,17 @@
 </div>
 
 <div class="usr_status_bar">
-    <div class="usr_status_text" {if !$usr.status_text}style="display:none"{/if}>
-        <span>{$usr.status_text|escape:'html'}</span>
-        <span class="usr_status_date" >// {$usr.status_date} {$LANG.BACK}</span>
+    <div class="usr_status_text">
+        <span id="usr_status_link" title="{$LANG.CHANGE_STATUS}" class="{if !$usr.status_text}no_status{/if}">{if $usr.status_text}{$usr.status_text}{elseif $myprofile || $is_admin}изменить статус{/if}</span>
+        <span class="usr_status_date" >{if $usr.status_text}// {$usr.status_date} {$LANG.BACK}{/if}</span>
+        <div id="status_editor" style="display: none;">
+            <div class="editor">
+                <input class="text" maxlength="140" id="set_text">
+                <button id="save_status">Сохранить</button>
+                <div class="clear"></div>
+            </div>
+        </div>
     </div>
-    {if $myprofile || $is_admin}
-        <div class="usr_status_link"><a href="javascript:" onclick="setStatus({$usr.id})">{$LANG.CHANGE_STATUS}</a></div>
-    {/if}
 </div>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:14px">

@@ -86,7 +86,7 @@ function addNickname(obj){
 
 function addTagAudio(field_id){
    var txtarea = document.getElementById(field_id);
-   var link_url = prompt('Ссылка на mp3-файл::');
+   var link_url = prompt('Ссылка на файл:');
    var pos = getCaretPos(txtarea);
    if (link_url.length == 0) { return; }
    txtarea.value = txtarea.value.substring(0,pos) +  '[audio]' + link_url + '[/audio]'+ txtarea.value.substring(pos,txtarea.value.length);
@@ -95,15 +95,124 @@ function addTagAudio(field_id){
 
 function addTagVideo(field_id){
    var txtarea = document.getElementById(field_id);
-   var link_url = prompt('Код видео (Youtube/Rutube):');
+   var link_url = prompt('Код видео или ссылка на файл:');
    var pos = getCaretPos(txtarea);
    if (link_url.length > 0){txtarea.value = txtarea.value.substring(0,pos) + '[video]' + link_url + '[/video]' + txtarea.value.substring(pos,txtarea.value.length);}
 	return;
 
 }
 
+
+function addVideo(){
+	$('#albumimginsert').hide();
+	$('#imginsert').hide();
+	$('#audioinsert').hide();
+	$('#videoinsert').toggle();
+}
+
+function loadVideo(field_id, component, target, target_id){
+
+	$(".ajax-loader").ajaxStart(function(){
+		$(this).fadeIn();
+		$('#videoinsert').hide();
+	})
+	.ajaxComplete(function(){
+		$(this).hide();
+	});
+
+	$.ajaxFileUpload({
+
+		url:'/core/ajax/videoinsert.php?component='+component+'&target='+target+'&target_id='+target_id,
+		secureuri:false,
+		fileElementId:'attach_video',
+		dataType: 'json',
+		success: function (data, status){
+			$('#fileInputContainerVideo').html($('#fileInputContainerVideo').html());
+			if(typeof(data.error) != 'undefined'){
+				if(data.error != ''){
+					alert('Ошибка: '+data.error);
+				} else {
+					videoLoaded(field_id, data.msg);
+					alert('Видео добавлено');
+				}
+			}
+		},
+		error: function (data, status, e){
+			alert('Ошибка! ' + e);
+		}
+
+	})
+
+	return false;
+
+}
+
+function videoLoaded(field_id, data){
+   var txtarea = document.getElementById(field_id);
+   var txtval = txtarea.value;
+   var pos = getCaretPos(txtarea);
+   txtarea.value = txtval.substring(0,pos) + '[video]'+data+'[/video]' + txtval.substring(pos,txtval.length);
+   return;
+}
+
+
+function addAudio(){
+	$('#albumimginsert').hide();
+	$('#imginsert').hide();
+	$('#videoinsert').hide();
+	$('#audioinsert').toggle();
+}
+
+function loadAudio(field_id, component, target, target_id){
+
+	$(".ajax-loader").ajaxStart(function(){
+		$(this).fadeIn();
+		$('#audioinsert').hide();
+	})
+	.ajaxComplete(function(){
+		$(this).hide();
+	});
+
+	$.ajaxFileUpload({
+
+		url:'/core/ajax/audioinsert.php?component='+component+'&target='+target+'&target_id='+target_id,
+		secureuri:false,
+		fileElementId:'attach_audio',
+		dataType: 'json',
+		success: function (data, status){
+			$('#fileInputContainerAudio').html($('#fileInputContainerAudio').html());
+			if(typeof(data.error) != 'undefined'){
+				if(data.error != ''){
+					alert('Ошибка: '+data.error);
+				} else {
+					audioLoaded(field_id, data.msg);
+					alert('Аудио добавлено');
+				}
+			}
+		},
+		error: function (data, status, e){
+			alert('Ошибка! ' + e);
+		}
+
+	})
+
+	return false;
+
+}
+
+function audioLoaded(field_id, data){
+   var txtarea = document.getElementById(field_id);
+   var txtval = txtarea.value;
+   var pos = getCaretPos(txtarea);
+   txtarea.value = txtval.substring(0,pos) + '[audio]'+data+'[/audio]' + txtval.substring(pos,txtval.length);
+   return;
+}
+
+
 function addImage(){
 	$('#albumimginsert').hide();
+	$('#videoinsert').hide();
+	$('#audioinsert').hide();
 	$('#imginsert').toggle();
 }
 
@@ -148,9 +257,10 @@ function imageLoaded(field_id, data){
    var txtarea = document.getElementById(field_id);
    var txtval = txtarea.value;
    var pos = getCaretPos(txtarea);
-   txtarea.value = txtval.substring(0,pos) + ' [IMG]'+data+'[/IMG] ' + txtval.substring(pos,txtval.length);
+   txtarea.value = txtval.substring(0,pos) + '[IMG]'+data+'[/IMG]' + txtval.substring(pos,txtval.length);
    return;
 }
+
 
 function addTagQuote(field_id){
    var txtarea = document.getElementById(field_id);
@@ -171,7 +281,7 @@ function insertAlbumImage(field_id){
        var txtarea = document.getElementById(field_id);
        var txtval = txtarea.value;
        var pos = getCaretPos(txtarea);
-       txtarea.value = txtval.substring(0,pos) + ' [IMG]/images/users/photos/medium/'+path+'[/IMG] ' + txtval.substring(pos,txtval.length);
+       txtarea.value = txtval.substring(0,pos) + '[IMG]/images/users/photos/medium/'+path+'[/IMG]' + txtval.substring(pos,txtval.length);
    }
    $('#albumimginsert').hide();
    return;
@@ -180,6 +290,8 @@ function insertAlbumImage(field_id){
 
 function addAlbumImage(){
 	$('#imginsert').hide();
+	$('#videoinsert').hide();
+	$('#audioinsert').hide();
 	$('#albumimginsert').toggle();
 }
 

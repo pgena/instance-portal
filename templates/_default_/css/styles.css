@@ -4576,3 +4576,26 @@ span.ajax-loader {
     border-bottom:dashed 1px #375E93;
     color:#375E93;
 }
+
+        #status_editor{
+            position: absolute;
+            z-index: 10;
+            margin: -27px -14px 0px;
+        }
+        #status_editor > div{
+            background: #F7F7F7;
+            border: 1px solid #CCC;
+            padding: 8px;
+            width: 384px;
+        }
+        #status_editor #set_text{
+            margin: 0px 0px 8px;
+            width: 376px;
+            padding: 4px 3px;
+        }
+        {/literal}{if $myprofile || $is_admin}{literal}
+        #usr_status_link:hover{
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        {/literal}{/if}{literal}

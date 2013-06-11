@@ -1065,39 +1065,29 @@ class bbcode {
         return $str;
 
     }
-    // Функция - обработчик тега [video]
+	
+	// Функция - обработчик тега [video]
     function video_2html($elem) {
         $str = '<div class="bb_tag_video">';
-        foreach ($elem['val'] as $item) {
-
-            if ('item'==$item['type']) { continue; }
-
-			$my_domen_regexp = str_replace('.', '\.', HOST);
-			$my_domen_regexp = str_replace('/', '\/', $my_domen_regexp);
-
-            $iframe_regexp      = '/<iframe.*?src=(?!"http:\/\/www\.youtube\.com\/embed\/|"http:\/\/vk\.com\/video_ext\.php\?|"'.$my_domen_regexp.').*?><\/iframe>/iu';
-            $iframe_regexp2     = '/<iframe.*>.+<\/iframe>/iu';
-            $item['str']        = preg_replace($iframe_regexp, '', $item['str']);
-            $item['str']        = preg_replace($iframe_regexp2, '', $item['str']);
-
-            $str .= strip_tags($item['str'], '<iframe><object><param><embed>');
-
-        }
-        $str .= '</div>';
-        return cmsCore::htmlCleanUp($str);
+        $str .= '<object type="application/x-shockwave-flash" data="/includes/bbcode/uppod.swf" width="500" height="375">
+					<param name="bgcolor" value="#000000" />
+					<param name="allowFullScreen" value="true" />
+					<param name="allowScriptAccess" value="always" />
+					<param name="flashvars" value="st=/includes/bbcode/video.txt&file='.$this->cleanAttrValue($elem['val'][0]['str']).'" />
+				</object>';
+        $str .= '</div><br />';
+        return $str;
     }
+	
     // Функция - обработчик тега [audio]
     function audio_2html($elem) {
         $str = '<div class="bb_tag_audio">';
-        $str .= '<object type="application/x-shockwave-flash" data="/includes/bbcode/player_mp3_mini.swf" width="200" height="20">
-                     <param name="movie" value="/includes/bbcode/player_mp3_mini.swf"></param>
-                     <param name="bgcolor" value="#666666"></param>
-                     <param name="loadingcolor" value="#FFFFFF"></param>
-                     <param name="buttoncolor" value="#000000"></param>
-                     <param name="slidercolor" value="#333333"></param>
-                     <param name="FlashVars" value="mp3='.$this->cleanAttrValue($elem['val'][0]['str']).'"></param>
-                </object>';
-        $str .= '</div>';
+        $str .= '<object type="application/x-shockwave-flash" data="/includes/bbcode/uppod.swf" width="500" height="25">
+					<param name="bgcolor" value="#000000" />
+					<param name="allowScriptAccess" value="always" />
+					<param name="flashvars" value="st=/includes/bbcode/audio.txt&file='.$this->cleanAttrValue($elem['val'][0]['str']).'" />
+				</object>';
+        $str .= '</div><br />';
         return $str;
     }
 

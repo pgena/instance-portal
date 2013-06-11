@@ -49,9 +49,9 @@
                     <span class="date">{$club.fpubdate}</span>
                 </div>
                 <div class="description">
-					<div style="display:none" class="full">{$club.description}</div>
-					<div class="short">{$club.description|truncate:500}</div>
-				<span class="toggelator">Развернуть</span>	
+					<div class="descriptionnone full" style="display:none">{$club.description}</div>
+					<div class="descriptionnone short">{$club.description|truncate:500}</div>
+					<span class="toggelator">{$LANG.UNFOLD}</span>	
                 </div>
 				
                 {if $is_member || $is_admin || $is_moder || $user_id}
@@ -150,18 +150,18 @@
     <p>{$LANG.CLUB_PRIVATE}</p>
     <p>{$LANG.CLUB_ADMIN}: <a href="{profile_url login=$club.login}">{$club.nickname}</a></p>
 {/if}
-
 {literal}
 <script type="text/javascript">
-	$('document').ready(function(){
-		$('span.toggelator').click(function(event){
+	$(document).ready(function(){
+		$('span.toggelator').click(function(event){			
 			var element = $(event.target);
-			$('div.wall_post_text', $(element).parent()).toggle();
-			//alert('123');
+			
+			$('div.descriptionnone', $(element).parent()).toggle();
 		})
 	});
 </script>
 <style>
-	.short { max-height:150px; overflow:hidden; display: inline-block;}
+	.short { max-width:650px; max-height:150px; overflow:hidden; display: inline-block;}
+	.full  { max-width:650px;}
 </style>
 {/literal}
