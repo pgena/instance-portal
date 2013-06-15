@@ -439,11 +439,11 @@
 							'ageto' => 'all'
                          );
 
-        //$routes[] = array(
-        //                    '_uri'  => '/^users\/([a-zA-z0-9\.]+)$/i',
-        //                    'do'    => 'profile',
-        //                    1       => 'login'
-        //                 );
+        $routes[] = array(
+                            '_uri'  => '/^users\/([a-zA-z0-9\.]+)$/i',
+                            'do'    => 'profile',
+                            1       => 'login'
+                         );
 						 
 		$routes[] = array(
                    '_uri'  => '/^users\/id\/([0-9]+)$/i',
